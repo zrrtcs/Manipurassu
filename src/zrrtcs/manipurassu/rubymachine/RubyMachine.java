@@ -29,7 +29,8 @@ public class RubyMachine {
         return (String)container.runScriptlet("\"hello world!\".reverse");  
     }
     public String fireRubyStringManipulator(String inputText, String rubyCode){
-        String outputText="";
-        return outputText;
+        container.put("_input",inputText);
+        String output = (String) container.runScriptlet(rubyCode);
+        return output;
     }
 }

@@ -16,14 +16,15 @@ import zrrtcs.manipurassu.rubymachine.RubyMachine;
 public class ManipurassuSimpleGui extends javax.swing.JFrame {
     
     private RubyMachine rubyMachine;
-
+    private javax.swing.JTextArea outputCurrentTxtArea;
     /**
      * Creates new form ManipurassuSimpleGui
      */
     public ManipurassuSimpleGui() {
         rubyMachine = new RubyMachine();
         initComponents();
-        jTabbedPane1.setVisible(false);
+        outputTabbedPanel.setVisible(true);
+        outputCurrentTxtArea = outputTxtArea1;
     }
 
     /**
@@ -48,10 +49,10 @@ public class ManipurassuSimpleGui extends javax.swing.JFrame {
         buttonRubyPanel = new javax.swing.JPanel();
         btnFireRuby = new javax.swing.JButton();
         outputStringPanel = new javax.swing.JPanel();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        outputTabbedPanel = new javax.swing.JTabbedPane();
         outputPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        outputTxtArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,15 +103,15 @@ public class ManipurassuSimpleGui extends javax.swing.JFrame {
 
         outputPanel1.setLayout(new java.awt.BorderLayout());
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane3.setViewportView(jTextArea1);
+        outputTxtArea1.setColumns(20);
+        outputTxtArea1.setRows(5);
+        jScrollPane3.setViewportView(outputTxtArea1);
 
         outputPanel1.add(jScrollPane3, java.awt.BorderLayout.CENTER);
 
-        jTabbedPane1.addTab("output01", outputPanel1);
+        outputTabbedPanel.addTab("output01", outputPanel1);
 
-        outputStringPanel.add(jTabbedPane1, java.awt.BorderLayout.CENTER);
+        outputStringPanel.add(outputTabbedPanel, java.awt.BorderLayout.CENTER);
 
         EastManipurassiPanel.add(outputStringPanel);
 
@@ -122,9 +123,10 @@ public class ManipurassuSimpleGui extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFireRubyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFireRubyActionPerformed
-//  HelloWorld example
+        String inputTxt = this.txtInput.getText();
 //        this.txtInputRuby.setText(rubyMachine.helloWorld());
-        String outputTxt = rubyMachine.fireRubyStringManipulator(this.txtInput.getSelectedText(), this.txtInputRuby.getText());
+        String outputTxt = rubyMachine.fireRubyStringManipulator(inputTxt, this.txtInputRuby.getText());
+        outputCurrentTxtArea.setText(outputTxt);
     }//GEN-LAST:event_btnFireRubyActionPerformed
 
     /**
@@ -173,10 +175,10 @@ public class ManipurassuSimpleGui extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JPanel outputPanel1;
     private javax.swing.JPanel outputStringPanel;
+    private javax.swing.JTabbedPane outputTabbedPanel;
+    private javax.swing.JTextArea outputTxtArea1;
     private javax.swing.JPanel rubyCodePanel;
     private javax.swing.JTextArea txtInput;
     private javax.swing.JTextArea txtInputRuby;
